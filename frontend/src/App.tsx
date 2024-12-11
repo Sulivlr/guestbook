@@ -1,9 +1,12 @@
+import GuestBar from "./UI/AppBar/GuestBar";
 
 
 const App = () => {
     return (
         <>
-            <h1>Privet</h1>
+            <header>
+                <GuestBar />
+            </header>
         </>
     );
 };
