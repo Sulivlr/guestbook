@@ -1,17 +1,19 @@
+
 import {Message} from "../types";
 import {createSlice} from "@reduxjs/toolkit";
-import {fetchMessages} from "./messagesThunks";
+import {createMessage, fetchMessages} from "./messagesThunks";
 
-export interface MessagesState {
+interface MessagesState {
     items: Message[];
-    isFetching: boolean;
-    isCreating: boolean;
+    fetchLoading: boolean;
+    createLoading: boolean;
+
 }
 
-export const initialState: MessagesState = {
+const initialState: MessagesState = {
     items: [],
-    isFetching: false,
-    isCreating: false,
+    fetchLoading: false,
+    createLoading: false,
 };
 
 export const messagesSlice = createSlice({
@@ -20,24 +22,32 @@ export const messagesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchMessages.pending, (state) => {
-            state.isFetching = true;
+            state.fetchLoading = true;
         }).addCase(fetchMessages.fulfilled, (state, {payload: messages}) => {
-            state.isFetching = false;
+            state.fetchLoading = false;
             state.items = messages;
         }).addCase(fetchMessages.rejected, (state) => {
-            state.isFetching = false;
+            state.fetchLoading = false;
+        });
+
+        builder.addCase(createMessage.pending, (state) => {
+            state.createLoading = true;
+        }).addCase(createMessage.fulfilled, (state) => {
+            state.createLoading = false;
+        }).addCase(createMessage.rejected, (state) => {
+            state.createLoading = false;
         });
     },
     selectors: {
         selectMessages: (state) => state.items,
-        selectMessagesIsFetching: (state) => state.isFetching,
-        selectMessagesIsCreating: (state) => state.isCreating,
-    },
+        selectFetching: (state) => state.fetchLoading,
+        selectCreating: (state) => state.createLoading,
+    }
 });
 
+
 export const messagesReducer = messagesSlice.reducer;
-export const {
-    selectMessages,
-    selectMessagesIsFetching,
-    selectMessagesIsCreating,
+export const {selectMessages,
+    selectFetching,
+    selectCreating
 } = messagesSlice.selectors;

@@ -29,12 +29,6 @@ const GuestBar = () => {
                         <StyledLink to="/">Guest Book</StyledLink>
                     </Typography>
                 </Grid>
-                <Grid sx={{display: 'flex', alignItems: 'center'}}>
-                    <MarkEmailUnread fontSize='large' color="inherit" sx={{mr: 1}}/>
-                    <Typography variant="h6" component="div">
-                        <StyledLink to="/new-message">New Message</StyledLink>
-                    </Typography>
-                </Grid>
             </Toolbar>
         </AppBar>
     );

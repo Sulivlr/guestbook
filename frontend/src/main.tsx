@@ -1,16 +1,17 @@
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 import App from './App';
-import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import {store} from "./app/store";
-import theme from "./theme";
+import {BrowserRouter} from "react-router-dom";
 import {CssBaseline, ThemeProvider} from "@mui/material";
+import theme from "./theme";
+import {store} from "./app/store";
+
 
 createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
         <Provider store={store}>
             <ThemeProvider theme={theme}>
-                <CssBaseline />
+                <CssBaseline/>
                 <App/>
             </ThemeProvider>
         </Provider>

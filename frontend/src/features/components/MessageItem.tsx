@@ -1,10 +1,10 @@
-import React from 'react';
-import {Avatar, Card, CardContent, CardHeader, CardMedia, Grid} from "@mui/material";
+import React from "react";
+import {Card, CardContent, CardHeader, CardMedia, Grid} from "@mui/material";
 
 interface Props {
     author: string;
     message: string;
-    image: string | null
+    image: string | null;
 }
 
 const MessageItem: React.FC<Props> = ({author, message, image}) => {
@@ -12,11 +12,19 @@ const MessageItem: React.FC<Props> = ({author, message, image}) => {
 
     return (
         <Grid item sx={{width: '300px'}}>
-            <Card sx={{height: '100%'}} >
-                <Avatar sx={{margin: 2}} />
+            <Card sx={{height: '100%'}}>
                 <CardHeader title={author} />
-                {imageUrl && (<CardMedia title={author} sx={{height: 0, paddingTop: '56%'}} image={imageUrl} />)}
-                <CardContent><strong>Message: </strong><i>{message}</i></CardContent>
+                {imageUrl && (
+                    <CardMedia
+                        title={author}
+                        sx={{height: 0, paddingTop: '56%'}}
+                        image={imageUrl}
+                    />
+                )}
+                <CardContent>
+                    <strong>Message: </strong>
+                    <i>{message}</i>
+                </CardContent>
             </Card>
         </Grid>
     );
