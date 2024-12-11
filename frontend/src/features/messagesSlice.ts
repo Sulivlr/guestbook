@@ -1,5 +1,6 @@
 import {Message} from "../types";
 import {createSlice} from "@reduxjs/toolkit";
+import {fetchMessages} from "./messagesThunks";
 
 export interface MessagesState {
     items: Message[];
@@ -17,13 +18,20 @@ export const messagesSlice = createSlice({
     name: "messages",
     initialState,
     reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(fetchMessages.pending, (state) => {
+            state.isFetching = true;
+        }).addCase(fetchMessages.fulfilled, (state, {payload: messages}) => {
+            state.isFetching = false;
+            state.items = messages;
+        }).addCase(fetchMessages.rejected, (state) => {
+            state.isFetching = false;
+        });
+    },
     selectors: {
         selectMessages: (state) => state.items,
         selectMessagesIsFetching: (state) => state.isFetching,
         selectMessagesIsCreating: (state) => state.isCreating,
-    },
-    extraReducers: () => {
-
     },
 });
 
