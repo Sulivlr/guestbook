@@ -1,12 +1,13 @@
 import {AppBar, Grid, styled, Toolbar, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import {MenuBook, Message} from "@mui/icons-material";
+import {MarkEmailUnread, MenuBook} from "@mui/icons-material";
 
 const StyledLink = styled(Link)({
     textDecoration: 'none',
     color: 'inherit',
     '&:hover': {
-        color: 'inherit',
+        color: '#d3d3d3',
+
     },
 });
 
@@ -17,21 +18,21 @@ const GuestBar = () => {
             position="sticky"
             sx={{
                 mb: 2,
-                background: 'linear-gradient(#ff9800 20%, #ff5722 67%)',
+                background: 'linear-gradient(#00e1ff 100%, #80ffc0 100%)',
                 boxShadow: '0 3px 10px rgba(0, 0, 0.2, 0.5)',
             }}
         >
             <Toolbar sx={{justifyContent: 'space-between'}}>
                 <Grid sx={{display: 'flex', alignItems: 'center'}}>
-                    <MenuBook sx={{mr: 1}}/>
+                    <MenuBook fontSize="large" sx={{mr: 1}}/>
                     <Typography variant="h6" component="div">
                         <StyledLink to="/">Guest Book</StyledLink>
                     </Typography>
                 </Grid>
                 <Grid sx={{display: 'flex', alignItems: 'center'}}>
-                    <Message fontSize='medium' color="primary" sx={{mr: 1}}/>
+                    <MarkEmailUnread fontSize='large' color="inherit" sx={{mr: 1}}/>
                     <Typography variant="h6" component="div">
-                        <StyledLink to="/new-message">Add new message</StyledLink>
+                        <StyledLink to="/new-message">New Message</StyledLink>
                     </Typography>
                 </Grid>
             </Toolbar>
